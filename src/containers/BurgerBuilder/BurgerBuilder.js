@@ -4,7 +4,7 @@ import BuildControls from './../../components/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import Spinner from './../../components/UI/Spinner/Spinner';
 import OrderSummery from '../../components/OrderSummery/OrderSummery';
-import ErrorHandler from './../ErrorHandler/ErrorHandler';
+// import ErrorHandler from './../ErrorHandler/ErrorHandler';
 import axios from './../../axios-orders';
 
 
@@ -66,8 +66,9 @@ class BurgerBuilder extends Component {
              deliveryMethod: 'fastest'
          }
          axios.post('/orders.json', order)
-            .then(res => this.setState({loading: false, purchasing:false}))
-            .catch(err => this.setState({loading: false}))
+         .then(res => this.setState({loading: false, purchasing:false}))
+         .catch(err => {this.setState({loading: false});
+                console.log(err)})
     }
 
     addIngredientHandler = (type)=> {
@@ -152,4 +153,4 @@ let burger = <Spinner />;
 
 }
 
-export default ErrorHandler(BurgerBuilder, axios);
+export default BurgerBuilder;
